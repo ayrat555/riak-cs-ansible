@@ -1,0 +1,40 @@
+---
+- hosts: riak_cs_hosts
+  remote_user: root
+  tasks:
+    # - name: test connection
+    #   ping:
+    # - name: set open files limit to 65536
+    #   pam_limits: domain=root limit_type=soft limit_item=nofile value=65536
+    # - name: set open files limit to 65536
+    #   pam_limits: domain=root limit_type=hard limit_item=nofile value=65536
+    # - name: set open files limit to 65536
+    #   pam_limits: domain=riak limit_type=soft limit_item=nofile value=65536
+    # - name: set open files limit to 65536
+    #   pam_limits: domain=riak limit_type=hard limit_item=nofile value=65536
+    # - name: install curl
+    #   apt: pkg=curl state=installed
+    # - name: install libssl0.9.8
+    #   apt: pkg=libssl0.9.8 state=installed
+    # - name: retrieve  signing key for riak
+    #   command: bash -c 'curl https://packagecloud.io/gpg.key | sudo apt-key add -'
+    # - name: install  apt-transport-https to be able to fetch packages over HTTPS
+    #   apt: pkg=apt-transport-https state=installed
+    # - name: add riak repository
+    #   command: bash -c 'curl -s https://packagecloud.io/install/repositories/basho/riak/script.deb.sh | sudo bash'
+    # - name: install riak
+    #   apt: pkg=riak=2.1.3-1 state=installed
+    # - name: copy script for add riac cs rep
+    #   copy: src=./add-riak-cs-rep.sh dest=/root/add-riak-cs-rep.sh mode=u=rw
+    # - name: add riak cs repository
+    #   command: bash /root/add-riak-cs-rep.sh
+    # - name: install riak cs
+    #   apt: pkg=riak-cs state=installed update_cache=true
+    # - name: copy advanced config
+    #   copy: src=./advanced.config dest=/etc/riak/advanced.config mode=u=rw
+    # - name: copy riak config
+    #   template: src=./riak.conf.j2 dest=/etc/riak/riak.conf owner=root mode=u=rw
+    # - name: copy riak-cs config
+    #   template: src=./riak-cs.conf.j2 dest=/etc/riak-cs/riak-cs.conf owner=root mode=u=rw
+    - name: restart riak-cs
+      command: bash -c 'riak-cs stop && riak-cs start'
